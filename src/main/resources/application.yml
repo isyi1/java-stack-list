@@ -31,3 +31,11 @@ spring:
       # 배치 실행 기록(Meta-data) 테이블 자동 생성 설정
       # always: 항상 생성, never: 생성 안 함 (운영에선 주로 never나 별도 스크립트 관리)
       initialize-schema: always
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: batch-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

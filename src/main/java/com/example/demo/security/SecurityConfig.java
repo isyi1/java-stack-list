@@ -35,7 +35,7 @@ public class SecurityConfig {
 
                 // 3. 인가(Authorization) 설정
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login", "/api/join").permitAll()
+                        .requestMatchers("/api/login", "/api/join", "/api/kafka").permitAll()
                         .anyRequest().authenticated()
                 )
 
