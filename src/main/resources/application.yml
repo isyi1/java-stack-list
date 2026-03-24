@@ -12,9 +12,8 @@ spring:
     hibernate:
       ddl-auto: update
       naming:
-        # ? ??? ??? @Table(name="TB_USER")? ?? ??? ??? ??? ????.
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true      # ??? ?? ??
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
@@ -28,7 +27,7 @@ spring:
       # 앱 기동 시 배치를 자동으로 실행할지 여부 (기본값: true)
       # 운영 환경에서는 보통 false로 두고 스케줄러(Jenkins, Quartz)가 호출
       enabled: false
-#    jdbc:
+    jdbc:
       # 배치 실행 기록(Meta-data) 테이블 자동 생성 설정
       # always: 항상 생성, never: 생성 안 함 (운영에선 주로 never나 별도 스크립트 관리)
-#      initialize-schema: always
+      initialize-schema: always
