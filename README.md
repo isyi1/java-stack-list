@@ -31,15 +31,16 @@
 * 서버 재기동 없이 DB 데이터 수정만으로 배치 주기 변경 및 활성화/비활성화가 가능합니다.
 
 #### 4. kafka
+```mermaid
 sequenceDiagram
-autonumber
-actor User as 사용자 (Postman/Browser)
-participant Ctrl as BatchTestController
-participant Service as BatchProducerService
-participant Kafka as Kafka Broker (run-batch-topic)
-participant Consumer as BatchKafkaConsumer
-participant Launcher as JobLauncher (Spring Batch)
-participant Job as SimpleJob (Batch Job)
+    autonumber
+    actor User as 사용자 (Postman/Browser)
+    participant Ctrl as BatchTestController
+    participant Service as BatchProducerService
+    participant Kafka as Kafka Broker (run-batch-topic)
+    participant Consumer as BatchKafkaConsumer
+    participant Launcher as JobLauncher (Spring Batch)
+    participant Job as SimpleJob (Batch Job)
 
     User->>Ctrl: GET /api/batch/run/simpleJob
     Ctrl->>Service: sendJobRequest("simpleJob")
@@ -54,12 +55,13 @@ participant Job as SimpleJob (Batch Job)
     alt Job 존재함
         Consumer->>Launcher: run(job, parameters)
         Launcher->>Job: 배치 실행 시작
-        Job-->>User: (비동기) 실행 로그 확인 가능
+        Note right of Job: (비동기 실행)
     else Job 존재하지 않음
         Consumer-->>Consumer: 로그 출력 ("Job을 찾을 수 없음")
     end
 
     Ctrl-->>User: "실행 요청 전달됨" 응답
+```
 
 ---
 
